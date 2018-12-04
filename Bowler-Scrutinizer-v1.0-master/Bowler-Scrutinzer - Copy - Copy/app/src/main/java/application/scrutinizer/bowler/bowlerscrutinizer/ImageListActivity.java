@@ -114,7 +114,7 @@ public class ImageListActivity extends AppCompatActivity implements ImageAdapter
     @Override
     public void onItemClick(int position) {
 
-        Toast.makeText(this, "Normal click at position: " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You have Clicked on Angle Number: " + position, Toast.LENGTH_SHORT).show();
 
 
     }
@@ -122,7 +122,7 @@ public class ImageListActivity extends AppCompatActivity implements ImageAdapter
     @Override
     public void onWhatEverClick(int position) {
 
-        Toast.makeText(this, "Whatever click at position: " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You have Clicked on Angle Number:  " + position, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -137,7 +137,7 @@ public class ImageListActivity extends AppCompatActivity implements ImageAdapter
             @Override
             public void onSuccess(Void aVoid) {
                 mDatabaseRef.child(selectedKey).removeValue();
-                Toast.makeText(ImageListActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ImageListActivity.this, "Image deleted", Toast.LENGTH_SHORT).show();
             }
         });
 

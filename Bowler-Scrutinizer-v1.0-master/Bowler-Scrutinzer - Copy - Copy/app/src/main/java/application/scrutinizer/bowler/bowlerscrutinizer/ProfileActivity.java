@@ -1,6 +1,8 @@
 package application.scrutinizer.bowler.bowlerscrutinizer;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -87,9 +89,34 @@ public class ProfileActivity extends AppCompatActivity
 
         else if (id == R.id.log_out) {
 
-            FirebaseAuth.getInstance().signOut();
-            finish();
-            startActivity(new Intent(this , LoginActivity.class));
+            AlertDialog.Builder a_Builder = new AlertDialog.Builder(this);
+            a_Builder.setMessage("Are you sure that you want to Deactivate your Account")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            FirebaseAuth.getInstance().signOut();
+                            finish();
+
+                            startActivity(new Intent(ProfileActivity.this , LoginActivity.class));
+
+
+                        }
+                    })
+
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            dialog.cancel();
+
+                        }
+                    });
+
+            AlertDialog alert = a_Builder.create();
+            alert.setTitle("Alert");
+            alert.show();
         }
 
 
@@ -129,10 +156,34 @@ public class ProfileActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_logout) {
 
-            FirebaseAuth.getInstance().signOut();
-            finish();
-            startActivity(new Intent(this , LoginActivity.class));
+            AlertDialog.Builder a_Builder = new AlertDialog.Builder(this);
+            a_Builder.setMessage("Are you sure that you want to Deactivate your Account")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
+                            FirebaseAuth.getInstance().signOut();
+                            finish();
+
+                            startActivity(new Intent(ProfileActivity.this , LoginActivity.class));
+
+
+                        }
+                    })
+
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            dialog.cancel();
+
+                        }
+                    });
+
+            AlertDialog alert = a_Builder.create();
+            alert.setTitle("Alert");
+            alert.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -166,10 +217,34 @@ public class ProfileActivity extends AppCompatActivity
 
     public void View_Logout(View view) {
 
-        FirebaseAuth.getInstance().signOut();
-        finish();
-        startActivity(new Intent(this , LoginActivity.class));
+        AlertDialog.Builder a_Builder = new AlertDialog.Builder(this);
+        a_Builder.setMessage("Are you sure that you want to Deactivate your Account")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+
+                        startActivity(new Intent(ProfileActivity.this , LoginActivity.class));
+
+
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        dialog.cancel();
+
+                    }
+                });
+
+        AlertDialog alert = a_Builder.create();
+        alert.setTitle("Alert");
+        alert.show();
 
     }
 

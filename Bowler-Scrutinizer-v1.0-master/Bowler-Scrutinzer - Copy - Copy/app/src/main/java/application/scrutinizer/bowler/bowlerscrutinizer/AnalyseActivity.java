@@ -399,13 +399,13 @@ public class AnalyseActivity extends AppCompatActivity {
 
 
 
-                tx1.setText("Distance 1 = " +dis1+ "\n Distance 2 ="+dis2+ "\n sine ="+sin + "\n theta = " +theta);
+                tx1.setText("Distance 1 = " +dis1+ "\n Distance 2 ="+dis2+ "\n sine ="+sin + "\n Angle= " +theta);
 
             }
 
             else{
 
-                tx1.setText("Distance 1 = " +dis1+ "\n Distance 2 ="+dis2+ "\n sine ="+sin + "\n theta = " +theta);
+                tx1.setText("Distance 1 = " +dis1+ "\n Distance 2 ="+dis2+ "\n sine ="+sin + "\n Angle = " +theta);
 
             }
 
@@ -419,7 +419,7 @@ public class AnalyseActivity extends AppCompatActivity {
         final View vew = getLayoutInflater().inflate(R.layout.activity_results,null);
         final TextView show = (TextView) vew.findViewById(R.id.GetTheta);
         final TextView legal = (TextView) vew.findViewById(R.id.Getresult);
-        show.setText("\ntheta = " +String.format("%.2f" , theta));
+        show.setText("\nAngle = " +String.format("%.2f" , theta));
 
         if(theta <= 15){
             legal.setText("Hurray Your Angle of Bowling is Legal");

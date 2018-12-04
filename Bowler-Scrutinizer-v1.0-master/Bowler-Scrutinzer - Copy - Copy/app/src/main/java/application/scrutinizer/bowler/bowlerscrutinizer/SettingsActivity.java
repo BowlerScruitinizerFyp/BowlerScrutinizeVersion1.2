@@ -1,6 +1,8 @@
 package application.scrutinizer.bowler.bowlerscrutinizer;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,22 +39,60 @@ public class SettingsActivity extends AppCompatActivity {
     public void Account_Dec(View view) {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+        final FirebaseUser user = auth.getCurrentUser();
         final String TAG = "SettingsActivity";
 
 
-        user.delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User account deleted.");
-                            finish();
-                            Intent intent = new Intent(SettingsActivity.this , MainActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
+        AlertDialog.Builder a_Builder = new AlertDialog.Builder(this);
+        a_Builder.setMessage("Are you sure that you want to Deactivate your Account")
+        .setCancelable(false)
+        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                user.delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "User account deleted.");
+                                    finish();
+                                    Intent intent = new Intent(SettingsActivity.this , MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
+                        });
+
+            }
+        })
+
+        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialog.cancel();
+
+            }
+        });
+
+        AlertDialog alert = a_Builder.create();
+        alert.setTitle("Alert");
+        alert.show();
+
+
+//        user.delete()
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            Log.d(TAG, "User account deleted.");
+//                            finish();
+//                            Intent intent = new Intent(SettingsActivity.this , MainActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    }
+//                });
 
 //        if(user != null){
 //            dialog.setMessage("Please Wait..... Deactivating ");
@@ -90,10 +130,37 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void Log_out(View view) {
 
+        AlertDialog.Builder a_Builder = new AlertDialog.Builder(this);
+        a_Builder.setMessage("Are you sure that you want to Deactivate your Account")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-        FirebaseAuth.getInstance().signOut();
-        finish();
-        startActivity(new Intent(this , LoginActivity.class));
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+
+                        startActivity(new Intent(SettingsActivity.this , LoginActivity.class));
+
+
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        dialog.cancel();
+
+                    }
+                });
+
+        AlertDialog alert = a_Builder.create();
+        alert.setTitle("Alert");
+        alert.show();
+
+
+
 
     }
 }
